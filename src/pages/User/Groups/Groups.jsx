@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 
-export const Index = () => {
+export const Groups = () => {
   return (
     <Box>
-      <Typography>Главная</Typography>
+      <Typography>Группы</Typography>
     </Box>
   );
 };

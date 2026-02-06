@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const optionsSlice = createSlice({
   name: "options",
   initialState: {
-    adminAccess: false,
+    isLogged: false,
   },
   reducers: {
-    setAminAccess: (state, { payload }) => {
-      state.adminAccess = payload;
+    setLogged: (state, { payload }) => {
+      state.isLogged = payload;
     },
   },
 });
 
 // default
-export const { setAminAccess } = optionsSlice.actions;
+export const { setLogged } = optionsSlice.actions;

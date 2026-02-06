@@ -1,11 +1,9 @@
-import { Navbar } from "@/widgets/Navbar/Navbar";
 import { userRoutes } from "@/app/routes/user.routes";
-import { Footer } from "@/widgets/Footer/Footer";
 
-import { Box } from "@mui/material";
 import { Route, Routes } from "react-router";
 
 import { NotFoundPage } from "@/widgets/NotFoundPage/NoFoundPage";
+import { BottomNavigation } from "@/widgets/BottomNavigation/BottomNavigation";
 
 export const UserLayout = () => {
   const routes = () => {
@@ -21,17 +19,8 @@ export const UserLayout = () => {
 
   return (
     <>
-      <Navbar />
-
-      <Box
-        sx={{
-          pl: 0,
-        }}
-      >
-        {routes()}
-      </Box>
-
-      <Footer />
+      {routes()}
+      <BottomNavigation />
     </>
   );
 };

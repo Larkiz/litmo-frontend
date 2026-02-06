@@ -1,14 +1,14 @@
-export const authFetch = (path, options) => {
+import { getLocaleStorage } from "@/shared/lib/functions/localStorageControls";
+
+export const authFetch = (endpoint, options) => {
   const headers = !options?.headers
     ? { "Content-type": "application/json" }
     : {};
-  const token =
-    localStorage.getItem("token") || sessionStorage.getItem("token");
-  return fetch(`${import.meta.env.VITE_API_HOST_COMMON}/api` + path, {
-    ...options,
+  return fetch(import.meta.env.VITE_API_HOST_COMMON + endpoint, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${getLocaleStorage("token")}`,
       ...headers,
     },
-  });
+    ...options,
+  }).then((res) => res.json().then((data) => ({ data, status: res.status })));
 };

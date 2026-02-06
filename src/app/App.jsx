@@ -1,16 +1,38 @@
-import { Login } from "@/pages/Admin/Authorization/Login";
+import { SignIn } from "@/pages/User/Authorization/SignIn";
 
-import { AdminLayout } from "@/app/layouts/Admin";
 import { UserLayout } from "@/app/layouts/User";
-import { CheckAuth } from "@/shared/lib/middlewares/CheckAuth";
 
 import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router";
-import { ToastContainer } from "react-toastify";
 
-export default function ScrollToTop() {
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router";
+import { ToastContainer } from "react-toastify";
+import { Box } from "@mui/material";
+import { colors } from "@/shared/lib/colors";
+import { SignUp } from "@/pages/User/Authorization/SignUp";
+import { CheckAuth } from "@/shared/lib/middlewares/CheckAuth";
+import { authFetch } from "@/shared/lib/functions/authFetch";
+import { useDispatch } from "react-redux";
+import { setLogged } from "@/redux/slices/optionsSlice";
+
+function ScrollToTopAndCheckToken() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    authFetch("/checkToken").then(({ data }) => {
+      if (data === true) {
+        dispatch(setLogged(true));
+      } else {
+        navigate("/signin");
+      }
+    });
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -20,58 +42,44 @@ export default function ScrollToTop() {
 }
 
 export const App = () => {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   const token =
-  //     localStorage.getItem("token") || sessionStorage.getItem("token");
-  //   const role = localStorage.getItem("role") || sessionStorage.getItem("role");
-
-  //   if (token !== null && role !== null) {
-  //     authFetch("/check", {
-  //       method: "post",
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         if (!data.forbidden) {
-  //           sessionStorage.setItem("token", token);
-
-  //           sessionStorage.setItem("role", role);
-  //           return dispatch(setAminAccess(true));
-  //         }
-
-  //         return dispatch(setAminAccess(false));
-  //       });
-  //   }
-  // }, []);
-
   return (
-    <>
-      <BrowserRouter
-        future={{
-          v7_relativeSplatPath: true,
-          v7_startTransition: true,
-        }}
-      >
-        <ScrollToTop />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/admin/*"
-            element={
-              <CheckAuth>
-                <AdminLayout />
-              </CheckAuth>
-            }
-          />
-          <Route path="/*" element={<UserLayout />} />
-        </Routes>
-      </BrowserRouter>
+    <Box
+      sx={{
+        boxShadow: colors.boxShadow,
+        borderRadius: 10,
+        maxWidth: 1300,
+        margin: "auto",
+        height: { xs: "100vh", xl: "95vh" },
+        position: "relative",
+      }}
+    >
+      <Box sx={{ p: { xs: 1.5, sm: 4 } }}>
+        <BrowserRouter
+          future={{
+            v7_relativeSplatPath: true,
+            v7_startTransition: true,
+          }}
+        >
+          <ScrollToTopAndCheckToken />
+          <Routes>
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
 
+            <Route
+              path="/*"
+              element={
+                <CheckAuth>
+                  <UserLayout />
+                </CheckAuth>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </Box>
       <ToastContainer
-        position={"top-right"}
-        autoClose={3000}
-        hideProgressBar={false}
+        position={"bottom-center"}
+        autoClose={2000}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
@@ -80,6 +88,6 @@ export const App = () => {
         draggable
         theme={"colored"}
       />
-    </>
+    </Box>
   );
 };

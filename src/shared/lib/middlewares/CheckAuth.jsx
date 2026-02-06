@@ -1,20 +1,9 @@
-import { NotFoundPage } from "@/widgets/NotFoundPage/NoFoundPage";
+import { useSelector } from "react-redux";
 
 export const CheckAuth = ({ children }) => {
-  let token = localStorage.getItem("token");
-  let role = null;
+  const isLogged = useSelector((store) => store.optionsStore.isLogged);
 
-  if (token !== null) {
-    sessionStorage.setItem("token", localStorage.getItem("token"));
-    sessionStorage.setItem("role", localStorage.getItem("role"));
-  }
-
-  token = sessionStorage.getItem("token");
-  role = sessionStorage.getItem("role");
-
-  if (role === "admin") {
+  if (isLogged) {
     return children;
-  } else {
-    return <NotFoundPage />;
   }
 };
