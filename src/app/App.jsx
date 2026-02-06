@@ -19,6 +19,7 @@ import { CheckAuth } from "@/shared/lib/middlewares/CheckAuth";
 import { authFetch } from "@/shared/lib/functions/authFetch";
 import { useDispatch } from "react-redux";
 import { setLogged } from "@/redux/slices/optionsSlice";
+import { keyUtil } from "@/shared/lib/crypt/keyUtil";
 
 function ScrollToTopAndCheckToken() {
   const { pathname } = useLocation();
