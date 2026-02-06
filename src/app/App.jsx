@@ -26,13 +26,17 @@ function ScrollToTopAndCheckToken() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    authFetch("/checkToken").then(({ data }) => {
-      if (data === true) {
-        dispatch(setLogged(true));
-      } else {
+    authFetch("/checkToken")
+      .then(({ data }) => {
+        if (data === true) {
+          dispatch(setLogged(true));
+        } else {
+          navigate("/signin");
+        }
+      })
+      .catch(() => {
         navigate("/signin");
-      }
-    });
+      });
   }, []);
 
   useEffect(() => {
