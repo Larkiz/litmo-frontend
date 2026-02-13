@@ -19,6 +19,7 @@ export const BottomNavigation = () => {
         backgroundColor: "#fff",
         left: "50%",
         transform: "translateX(-50%)",
+        zIndex: 9998,
       }}
     >
       <Stack
@@ -28,7 +29,11 @@ export const BottomNavigation = () => {
         alignItems={"center"}
       >
         {userRoutes.map((route) => (
-          <IconButton to={route.path} component={CustomNavLink}>
+          <IconButton
+            to={route.path}
+            key={route.path}
+            component={CustomNavLink}
+          >
             <Stack
               label={route.name}
               value={route.path}

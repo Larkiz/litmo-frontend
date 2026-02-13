@@ -1,6 +1,6 @@
 export const colors = {
-  neutralColor: "#ffddd4ff", //"#FFE6D4"
-  primaryColor: "#ffc5b7ff", //#FFB7B2
+  // neutralColor: "#ffddd4ff", //"#FFE6D4"
+  // primaryColor: "#ffc5b7ff", //#FFB7B2
   accentColor: "#736485",
   textColor: "#ecdcff",
   discountColor: "#ff5e5eff",

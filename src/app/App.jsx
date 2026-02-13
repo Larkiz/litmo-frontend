@@ -19,7 +19,6 @@ import { CheckAuth } from "@/shared/lib/middlewares/CheckAuth";
 import { authFetch } from "@/shared/lib/functions/authFetch";
 import { useDispatch } from "react-redux";
 import { setLogged } from "@/redux/slices/optionsSlice";
-import { keyUtil } from "@/shared/lib/crypt/keyUtil";
 
 function ScrollToTopAndCheckToken() {
   const { pathname } = useLocation();
@@ -56,8 +55,11 @@ export const App = () => {
         margin: "auto",
         height: { xs: "100vh", xl: "95vh" },
         position: "relative",
+        overflow: "hidden",
       }}
     >
+      <div id="profile-modal"></div>
+
       <Box sx={{ p: { xs: 1.5, sm: 4 } }}>
         <BrowserRouter
           future={{

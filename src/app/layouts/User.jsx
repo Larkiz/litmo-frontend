@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router";
 
 import { NotFoundPage } from "@/widgets/NotFoundPage/NoFoundPage";
 import { BottomNavigation } from "@/widgets/BottomNavigation/BottomNavigation";
+import { ProfileModal } from "@/app/layouts/features/ProfileModal/ProfileModal";
 
 export const UserLayout = () => {
   const routes = () => {
@@ -19,6 +20,7 @@ export const UserLayout = () => {
 
   return (
     <>
+      <ProfileModal />
       {routes()}
       <BottomNavigation />
     </>

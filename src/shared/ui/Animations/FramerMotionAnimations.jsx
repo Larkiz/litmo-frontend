@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { motion } from "framer-motion";
 
 export const Appearance = ({
@@ -7,7 +8,7 @@ export const Appearance = ({
   noTranslate = false,
   delay = 0.2,
   distance = 40,
-
+  Component = Box,
   sx,
   ...props
 }) => {
@@ -15,14 +16,12 @@ export const Appearance = ({
     ? {
         visible: { opacity: 1, x: 0 },
         hidden: {
-          opacity: 0,
           x: noTranslate ? 0 : reverse ? -distance : distance,
         },
       }
     : {
         visible: { opacity: 1, y: 0 },
         hidden: {
-          opacity: 0,
           y: noTranslate ? 0 : reverse ? -distance : distance,
         },
       };
@@ -31,7 +30,7 @@ export const Appearance = ({
     <Component
       component={motion.div}
       initial={"hidden"}
-      transition={{ delay: delay, duration: 0.5 }}
+      transition={{ delay: delay, duration: 0.2 }}
       viewport={{ once: true }}
       whileInView="visible"
       variants={variants}
