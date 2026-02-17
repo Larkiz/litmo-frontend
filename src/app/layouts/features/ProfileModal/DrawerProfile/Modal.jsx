@@ -26,8 +26,8 @@ export const ModalProfile = ({ isOpen, onClose, children, sx }) => {
             id="modal-content"
             sx={{
               background: "white",
-              padding: 4,
-              borderRadius: 10,
+              // padding: 4,
+              borderRadius: { xs: 0, sm: 10 }, //закругления профиля
               maxWidth: 425,
               height: "92.5%",
 

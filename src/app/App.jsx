@@ -24,6 +24,7 @@ function ScrollToTopAndCheckToken() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(() => {
     authFetch("/checkToken")
       .then(({ data }) => {
@@ -50,7 +51,7 @@ export const App = () => {
     <Box
       sx={{
         boxShadow: colors.boxShadow,
-        borderRadius: 10,
+        borderRadius: { xs: 0, sm: 10 }, // закругления приложения
         maxWidth: 1300,
         margin: "auto",
         height: { xs: "100vh", xl: "95vh" },

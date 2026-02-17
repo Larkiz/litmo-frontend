@@ -1,12 +1,12 @@
 import { colors } from "@/shared/lib/colors";
 import { Button } from "@mui/material";
 
-export const AccentButton = ({ children, type = "title", sx, ...props }) => {
+export const AccentButton = ({ children, sx, ...props }) => {
   return (
     <Button
       sx={{
-        fontWeight: 600,
-        fontSize: type === "title" ? { xs: 14, md: 18 } : 14,
+        fontWeight: 550,
+        fontSize: 14,
         color: colors.textColor,
         boxShadow:
           "0 3px 2px 0 rgba(0, 0, 0, 0.35), inset 0 3px 6px 0 rgba(0, 0, 0, 0)",

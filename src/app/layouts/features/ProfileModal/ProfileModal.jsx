@@ -1,11 +1,12 @@
-import { DesktopDrawerProfile } from "@/app/layouts/features/ProfileModal/DesktopDrawer/DesktopDrawer";
+import { DrawerProfile } from "@/app/layouts/features/ProfileModal/DrawerProfile/Drawer";
 import { colors } from "@/shared/lib/colors";
-import { authFetch } from "@/shared/lib/functions/authFetch";
 import { Box, Button, Stack, Typography } from "@mui/material";
-import { use, useState } from "react";
-const userPromise = authFetch("/profile").then((res) => res.data);
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
 export const ProfileModal = () => {
-  const [profile, setProfile] = useState(use(userPromise));
+  const profile = useSelector((store) => store.profileStore.profile);
+
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -41,7 +42,7 @@ export const ProfileModal = () => {
           <Typography sx={{ fontWeight: 500 }}>Профиль</Typography>
         </Stack>
       </Button>
-      <DesktopDrawerProfile
+      <DrawerProfile
         profile={profile}
         onClose={() => setOpen(false)}
         open={open}

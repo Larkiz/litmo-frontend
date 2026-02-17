@@ -1,13 +1,14 @@
-import { Box, Popover, Typography } from "@mui/material";
+import { Box, Popover } from "@mui/material";
 import { useState } from "react";
 import { HexAlphaColorPicker } from "react-colorful";
 
+import EditIcon from "@mui/icons-material/Edit";
 export const ColorPicker = ({
   value,
   onChange,
   width = 64,
   height = 64,
-  title = "",
+  disabled = true,
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -30,17 +31,15 @@ export const ColorPicker = ({
             width: width,
             height: height,
             borderRadius: 50,
-            cursor: "pointer",
+            cursor: disabled ? null : "pointer",
             backgroundColor: value,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
-          onClick={handleClick}
+          onClick={(e) => (disabled ? null : handleClick(e))}
         >
-          <Typography sx={{ fontSize: 25, color: "#292929" }}>
-            {title}
-          </Typography>
+          {!disabled && <EditIcon />}
         </Box>
       </div>
       <Popover
@@ -52,6 +51,7 @@ export const ColorPicker = ({
           vertical: "bottom",
           horizontal: "left",
         }}
+        sx={{ zIndex: 10000 }}
       >
         <HexAlphaColorPicker
           color={value}
