@@ -1,6 +1,8 @@
+import { useColors } from "@/shared/hooks/useColors";
 import { Box, Stack, Typography } from "@mui/material";
 
 export const GroupCard = ({ group }) => {
+  const colors = useColors();
   return (
     <Stack alignItems={"center"}>
       <Box
@@ -11,7 +13,7 @@ export const GroupCard = ({ group }) => {
           borderRadius: 2,
         }}
       />
-      <Typography sx={{ textTransform: "none" }}>
+      <Typography sx={{ textTransform: "none", color: colors.textColor }}>
         {group.name.slice(0, 6) + "..."}
       </Typography>
     </Stack>

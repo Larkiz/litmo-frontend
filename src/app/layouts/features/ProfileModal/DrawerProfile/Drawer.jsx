@@ -2,7 +2,6 @@ import { ModalProfile } from "@/app/layouts/features/ProfileModal/DrawerProfile/
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Button, IconButton, Stack, Typography } from "@mui/material";
-import { colors } from "@/shared/lib/colors";
 import { ColorPicker } from "@/app/layouts/features/ProfileModal/ui/ColorPicker";
 import moment from "moment";
 import { ProfileCard } from "@/app/layouts/features/ProfileModal/ui/ProfileCard";
@@ -22,6 +21,10 @@ import { clearLocalStorage } from "@/shared/lib/functions/localStorageControls";
 import { useNavigate } from "react-router";
 import { getDiff } from "@/app/layouts/features/ProfileModal/lib/getDiff";
 import { setLogged } from "@/redux/slices/optionsSlice";
+import { useColors } from "@/shared/hooks/useColors";
+import { ProfilePoint } from "@/app/layouts/features/ProfileModal/ui/ProfilePoint";
+import { ProfileAccordion } from "@/app/layouts/features/ProfileModal/ui/ProfileAccordion";
+import { ThemeChanger } from "@/app/layouts/features/ProfileModal/features/ThemeChanger";
 
 export const DrawerProfile = ({ open, onClose, profile }) => {
   const [editing, setEditing] = useState({
@@ -70,6 +73,7 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
       body: JSON.stringify(getDiff(profile, editingSnap)),
     });
   }
+  const colors = useColors();
   return (
     <ModalProfile
       sx={{
@@ -97,7 +101,7 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
         </IconButton>
         <Stack
           sx={{
-            backgroundColor: "#fff",
+            backgroundColor: colors.background,
             p: 2,
             boxShadow: colors.boxShadow,
             borderRadius: 2,
@@ -167,7 +171,8 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
               </ProfileCard>
               <IconButton
                 sx={{
-                  backgroundColor: colors.accentColor,
+                  backgroundColor: colors.iconBg,
+
                   borderRadius: 2,
                   ":hover": {
                     backgroundColor: "#6e5a86",
@@ -176,7 +181,7 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
                 style={{ marginLeft: "auto" }}
                 onClick={startEditing}
               >
-                <EditIcon sx={{ color: colors.textColor }} />
+                <EditIcon sx={{ color: colors.iconColor }} />
               </IconButton>
             </Stack>
           )}
@@ -184,27 +189,31 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
       </Stack>
       <Stack
         sx={{
-          backgroundColor: "#ffffff",
+          backgroundColor: colors.background,
           p: 4,
           pt: 12,
-          // borderRadius: 15,
           borderTopLeftRadius: 50,
           borderTopRightRadius: 50,
           height: "calc(100% - 320px)",
           mt: -10,
         }}
-        spacing={2}
+        spacing={5}
       >
-        <Typography sx={{ fontWeight: 550, fontSize: 16 }}>
-          Мои группы
-        </Typography>
-        <Stack flexGrow={1} direction={"row"}>
-          {profile.groups.map((group) => (
-            <CustomNavLink key={group.uid}>
-              <GroupCard group={group} />
-            </CustomNavLink>
-          ))}
-        </Stack>
+        <ProfilePoint title={"Мои группы"}>
+          <Stack direction={"row"}>
+            {profile.groups.map((group) => (
+              <CustomNavLink key={group.uid}>
+                <GroupCard group={group} />
+              </CustomNavLink>
+            ))}
+          </Stack>
+        </ProfilePoint>
+        <ProfilePoint flexGrow={1} title={"Настройки"}>
+          <ProfileAccordion title={"Цветовая тема"}>
+            <ThemeChanger />
+          </ProfileAccordion>
+        </ProfilePoint>
+
         <Button
           sx={{
             backgroundColor: "#ff4848",
