@@ -1,8 +1,8 @@
 import { Box, Popover } from "@mui/material";
 import { useState } from "react";
-import { HexAlphaColorPicker } from "react-colorful";
 
 import EditIcon from "@mui/icons-material/Edit";
+import { HexAlphaColorPicker } from "react-colorful";
 export const ColorPicker = ({
   value,
   onChange,

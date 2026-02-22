@@ -1,7 +1,10 @@
-import { Box } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import ReactDOM from "react-dom";
+import { Box } from "@mui/material";
+import { useColors } from "@/shared/hooks/useColors";
+
 export const ModalProfile = ({ isOpen, onClose, children, sx }) => {
+  const colors = useColors();
   return ReactDOM.createPortal(
     <AnimatePresence initial={isOpen}>
       {isOpen && (
@@ -26,12 +29,16 @@ export const ModalProfile = ({ isOpen, onClose, children, sx }) => {
             id="modal-content"
             sx={{
               background: "white",
-              // padding: 4,
               borderRadius: { xs: 0, sm: 10 }, //закругления профиля
               maxWidth: 425,
-              height: "92.5%",
-
-              boxShadow: "5px 0px 7px 0 rgba(0, 0, 0, 0.25)",
+              height: "100%",
+              overflowY: "scroll",
+              "::-webkit-scrollbar": {
+                display: "none",
+              },
+              display: "flex",
+              flexDirection: "column",
+              boxShadow: colors.boxShadow,
               ...sx,
             }}
             onClick={(e) => e.stopPropagation()}

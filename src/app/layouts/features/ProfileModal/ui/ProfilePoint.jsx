@@ -1,6 +1,6 @@
 import { useColors } from "@/shared/hooks/useColors";
-import { Stack, Typography } from "@mui/material";
-
+import { Stack } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
 export const ProfilePoint = ({ title, children, ...props }) => {
   const colors = useColors();
   return (

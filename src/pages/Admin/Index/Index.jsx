@@ -1,7 +1,7 @@
 import { adminRoutes } from "@/app/routes/admin.routes";
 import { CustomNavLink } from "@/shared/ui/CustomNavLink/CustomNavLink";
-import { Box, Paper, Stack, Typography } from "@mui/material";
-
+import { Box, Paper, Stack } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
 const CardLink = ({ route, parent = {} }) => {
   return (
     <Paper

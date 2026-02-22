@@ -13,12 +13,13 @@ import {
 } from "react-router";
 import { ToastContainer } from "react-toastify";
 import { Box } from "@mui/material";
-import { colors } from "@/shared/lib/colors";
 import { SignUp } from "@/pages/User/Authorization/SignUp";
 import { CheckAuth } from "@/shared/lib/middlewares/CheckAuth";
 import { authFetch } from "@/shared/lib/functions/authFetch";
 import { useDispatch } from "react-redux";
-import { setLogged } from "@/redux/slices/optionsSlice";
+import { setLogged, switchTheme } from "@/redux/slices/optionsSlice";
+import { useColors } from "@/shared/hooks/useColors";
+import { getLocaleStorage } from "@/shared/lib/functions/localStorageControls";
 
 function ScrollToTopAndCheckToken() {
   const { pathname } = useLocation();
@@ -26,6 +27,9 @@ function ScrollToTopAndCheckToken() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const theme = getLocaleStorage("theme");
+    dispatch(switchTheme(theme || "light"));
+
     authFetch("/checkToken")
       .then(({ data }) => {
         if (data === true) {
@@ -47,6 +51,13 @@ function ScrollToTopAndCheckToken() {
 }
 
 export const App = () => {
+  const colors = useColors();
+  useEffect(() => {
+    document.body.style.backgroundColor = colors?.foreground;
+    return () => {
+      document.body.style.backgroundColor = colors?.foreground;
+    };
+  }, [colors]);
   return (
     <Box
       sx={{
@@ -57,6 +68,7 @@ export const App = () => {
         height: { xs: "100vh", xl: "95vh" },
         position: "relative",
         overflow: "hidden",
+        backgroundColor: colors.background,
       }}
     >
       <div id="profile-modal"></div>

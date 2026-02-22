@@ -2,19 +2,39 @@ import { colors } from "@/shared/lib/colors";
 import { styled, TextField } from "@mui/material";
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
-    color: "#B5B5B5",
+    color: "#474747",
+  },
+  "& label": {
+    color: "#474747",
+  },
+  "& .MuiInput-root:hover::before": {
+    borderColor: colors.iconBgColorHover,
   },
   "& .MuiInput-underline:after": {
-    borderBottomColor: "#B5B5B5",
+    borderColor: colors.accentColor,
   },
+  "& .MuiInput-underline:before": {
+    borderColor: colors.accentColor,
+  },
+
+  "& .MuiFilledInput-root": {
+    backgroundColor: "#fafafa",
+  },
+
   "& .MuiOutlinedInput-root": {
+    backgroundColor: "#fafafa",
+    borderRadius: 10,
+    transition: ".2s",
+    "&.Mui-focused": {
+      borderRadius: 15,
+    },
     "& fieldset": {
-      borderColor: "#B5B5B5",
+      borderColor: colors.secondText,
       borderRadius: 10,
       transition: ".2s ease",
     },
     "&:hover fieldset": {
-      borderColor: "#B5B5B5",
+      borderColor: colors.accentColor,
     },
     "&.Mui-focused fieldset": {
       borderColor: colors.accentColor,

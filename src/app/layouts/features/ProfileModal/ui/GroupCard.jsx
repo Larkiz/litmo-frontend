@@ -1,6 +1,6 @@
 import { useColors } from "@/shared/hooks/useColors";
-import { Box, Stack, Typography } from "@mui/material";
-
+import { Box, Stack } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
 export const GroupCard = ({ group }) => {
   const colors = useColors();
   return (

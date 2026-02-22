@@ -1,7 +1,7 @@
 import { ModalProfile } from "@/app/layouts/features/ProfileModal/DrawerProfile/Modal";
-
+import { Typography } from "@/shared/ui/Typography/Typography";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, IconButton, Stack, Typography } from "@mui/material";
+import { Button, IconButton, Stack } from "@mui/material";
 import { ColorPicker } from "@/app/layouts/features/ProfileModal/ui/ColorPicker";
 import moment from "moment";
 import { ProfileCard } from "@/app/layouts/features/ProfileModal/ui/ProfileCard";
@@ -78,13 +78,12 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
     <ModalProfile
       sx={{
         backgroundColor: editing.color,
-        height: "100%",
-        overflow: "hidden",
       }}
       isOpen={open}
       onClose={closeProfile}
     >
-      <Stack sx={{ p: 3 }} spacing={2}>
+      {/* шапка профиля */}
+      <Stack sx={{ p: 3, zIndex: 2 }} spacing={2}>
         <IconButton
           sx={{
             backgroundColor: "#fff",
@@ -125,7 +124,7 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
               {editing.editing ? (
                 <Input
                   variant="standard"
-                  sx={{ "& input": { fontSize: 22 } }}
+                  sx={{ "& input": { fontSize: 22, color: colors.textColor } }}
                   InputProps={{
                     inputProps: {
                       minLength: 1, // Minimum value
@@ -145,7 +144,7 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
 
               <Typography
                 component={"div"}
-                sx={{ fontSize: 14, color: "#6B6B6B" }}
+                sx={{ fontSize: 14, color: colors.secondText }}
               >
                 @{profile.id}
               </Typography>
@@ -175,7 +174,7 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
 
                   borderRadius: 2,
                   ":hover": {
-                    backgroundColor: "#6e5a86",
+                    backgroundColor: colors.iconBgColorHover,
                   },
                 }}
                 style={{ marginLeft: "auto" }}
@@ -187,14 +186,18 @@ export const DrawerProfile = ({ open, onClose, profile }) => {
           )}
         </Stack>
       </Stack>
+      {/* Настройки/Группы */}
       <Stack
         sx={{
+          flex: 1,
           backgroundColor: colors.background,
           p: 4,
           pt: 12,
           borderTopLeftRadius: 50,
           borderTopRightRadius: 50,
-          height: "calc(100% - 320px)",
+          borderBottomRightRadius: { xs: 0, sm: 39 },
+          borderBottomLeftRadius: { xs: 0, sm: 39 },
+          // height: "100%",
           mt: -10,
         }}
         spacing={5}

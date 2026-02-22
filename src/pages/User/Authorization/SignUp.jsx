@@ -1,25 +1,18 @@
 import { AccountCircle, Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  Box,
-  IconButton,
-  InputAdornment,
-  Stack,
-  Typography,
-} from "@mui/material";
-
+import { Box, IconButton, InputAdornment, Stack } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
 import { Controller, useForm } from "react-hook-form";
 
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { useState } from "react";
 
-import { LogoBrand } from "@/shared/ui/LogoBrand/LogoBrand";
 import { AccentButton } from "@/shared/ui/Buttons/AccentButton";
 import { Input } from "@/shared/ui/TextField/Input";
-import { colors } from "@/shared/lib/colors";
 import { CustomNavLink } from "@/shared/ui/CustomNavLink/CustomNavLink";
 import { postAuth } from "@/pages/User/Authorization/lib/postData";
 import { setLocaleStorage } from "@/shared/lib/functions/localStorageControls";
-
+import { useColors } from "@/shared/hooks/useColors";
+import { LogoWelcome } from "@/pages/User/Authorization/ui/LogoWelcome";
 export const SignUp = () => {
   const {
     handleSubmit,
@@ -27,6 +20,7 @@ export const SignUp = () => {
     formState: { errors },
     setError,
   } = useForm();
+  const colors = useColors();
   function signup(data) {
     postAuth("/signup", data, ({ data: dbData, status }) => {
       if (status === 422) {
@@ -62,15 +56,7 @@ export const SignUp = () => {
   return (
     <Box sx={{ maxWidth: 320, margin: "auto" }}>
       <Stack spacing={2}>
-        <Stack alignItems={"center"}>
-          <LogoBrand />
-          <Typography
-            variant="h2"
-            sx={{ fontSize: 24, color: colors.accentColor }}
-          >
-            LITMO
-          </Typography>
-        </Stack>
+        <LogoWelcome />
         <Controller
           name="username"
           control={control}
@@ -86,6 +72,7 @@ export const SignUp = () => {
               label={"Никнейм"}
               onChange={onChange}
               error={!!errors.username}
+              variant="filled"
               helperText={!!errors.username && errors.username.message}
               required
             />
@@ -180,7 +167,7 @@ export const SignUp = () => {
             Создать аккаунт
           </AccentButton>
           <CustomNavLink to={"/signin"} sx={{ fontSize: { xs: 13, md: 18 } }}>
-            <Typography sx={{ color: colors.accentColor }}> Вход </Typography>
+            <Typography sx={{ color: colors.textColor }}> Вход </Typography>
           </CustomNavLink>
         </Stack>
       </Stack>

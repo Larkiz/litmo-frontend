@@ -4,8 +4,8 @@ import {
   AccordionSummary,
   ListItemButton,
   styled,
-  Typography,
 } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { NavLink } from "react-router";
 const AccordionStyled = styled((props) => (

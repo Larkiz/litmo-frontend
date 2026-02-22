@@ -8,9 +8,8 @@ import {
   ListItem,
   ListItemButton,
   Toolbar,
-  Typography,
 } from "@mui/material";
-
+import { Typography } from "@/shared/ui/Typography/Typography";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { LogoBrand } from "@/shared/ui/LogoBrand/LogoBrand";

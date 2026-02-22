@@ -1,12 +1,13 @@
-import { AppBar, IconButton, Stack, Typography } from "@mui/material";
-
+import { AppBar, IconButton, Stack } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
 import { useLocation } from "react-router";
 import { userRoutes } from "@/app/routes/user.routes";
 import { CustomNavLink } from "@/shared/ui/CustomNavLink/CustomNavLink";
-import { colors } from "@/shared/lib/colors";
+
+import { useColors } from "@/shared/hooks/useColors";
 export const BottomNavigation = () => {
   const loc = useLocation();
-
+  const colors = useColors();
   return (
     <AppBar
       position="absolute"
@@ -16,7 +17,8 @@ export const BottomNavigation = () => {
         display: "flex",
         maxWidth: 400,
         borderRadius: 10,
-        backgroundColor: "#fff",
+        // backgroundColor: "#fff",
+        backgroundColor: colors.background,
         left: "50%",
         transform: "translateX(-50%)",
         zIndex: 9998,
@@ -43,7 +45,7 @@ export const BottomNavigation = () => {
                   color:
                     loc.pathname === route.path
                       ? colors.accentColor
-                      : "#aaaaaa",
+                      : "#bebebefa!important",
                 },
               }}
               alignItems={"center"}

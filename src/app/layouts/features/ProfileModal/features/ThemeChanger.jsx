@@ -1,5 +1,6 @@
 import { switchTheme } from "@/redux/slices/optionsSlice";
 import { useColors } from "@/shared/hooks/useColors";
+import { setLocaleStorage } from "@/shared/lib/functions/localStorageControls";
 import {
   FormControl,
   FormControlLabel,
@@ -24,6 +25,7 @@ export const ThemeChanger = () => {
   const dispatch = useDispatch();
   function handleChange(event) {
     dispatch(switchTheme(event.target.value));
+    setLocaleStorage("theme", event.target.value);
   }
   return (
     <FormControl>

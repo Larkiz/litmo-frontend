@@ -1,7 +1,8 @@
 import { DrawerProfile } from "@/app/layouts/features/ProfileModal/DrawerProfile/Drawer";
 
 import { colors } from "@/shared/lib/colors";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
+import { Box, Button, Stack } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 

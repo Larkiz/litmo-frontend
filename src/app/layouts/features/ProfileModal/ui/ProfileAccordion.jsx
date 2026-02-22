@@ -1,11 +1,6 @@
 import { useColors } from "@/shared/hooks/useColors";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from "@mui/material";
-
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
 export const ProfileAccordion = ({ title, children }) => {
   const colors = useColors();
   return (

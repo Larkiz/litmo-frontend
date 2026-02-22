@@ -1,28 +1,23 @@
 import { AccountCircle, Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  Box,
-  IconButton,
-  InputAdornment,
-  Stack,
-  Typography,
-} from "@mui/material";
-
+import { Box, IconButton, InputAdornment, Stack } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
 import { Controller, useForm } from "react-hook-form";
 
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { useState } from "react";
 
-import { LogoBrand } from "@/shared/ui/LogoBrand/LogoBrand";
 import { toast } from "react-toastify";
 import { AccentButton } from "@/shared/ui/Buttons/AccentButton";
 import { Input } from "@/shared/ui/TextField/Input";
-import { colors } from "@/shared/lib/colors";
+
 import { CustomNavLink } from "@/shared/ui/CustomNavLink/CustomNavLink";
 import { postAuth } from "@/pages/User/Authorization/lib/postData";
 import { setLocaleStorage } from "@/shared/lib/functions/localStorageControls";
 import { useNavigate } from "react-router";
 import { setLogged } from "@/redux/slices/optionsSlice";
 import { useDispatch } from "react-redux";
+import { useColors } from "@/shared/hooks/useColors";
+import { LogoWelcome } from "@/pages/User/Authorization/ui/LogoWelcome";
 
 export const SignIn = () => {
   const {
@@ -32,7 +27,7 @@ export const SignIn = () => {
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const colors = useColors();
   function signin(data) {
     postAuth("/signin", data, ({ data: dbData, status }) => {
       if (status === 422) {
@@ -41,8 +36,6 @@ export const SignIn = () => {
         setLocaleStorage("token", dbData.token);
         dispatch(setLogged(true));
         navigate("/");
-        // navigation.navigate("main");
-        // navigation.reset({ routes: [{ name: "main" }] });
       }
     });
   }
@@ -60,15 +53,7 @@ export const SignIn = () => {
   return (
     <Box sx={{ maxWidth: 320, margin: "auto" }}>
       <Stack spacing={2}>
-        <Stack alignItems={"center"}>
-          <LogoBrand />
-          <Typography
-            variant="h2"
-            sx={{ fontSize: 24, color: colors.accentColor }}
-          >
-            LITMO
-          </Typography>
-        </Stack>
+        <LogoWelcome />
         <Controller
           name="login"
           control={control}
@@ -144,7 +129,7 @@ export const SignIn = () => {
             Войти
           </AccentButton>
           <CustomNavLink to={"/signup"} sx={{ fontSize: { xs: 13, md: 18 } }}>
-            <Typography sx={{ color: colors.accentColor }}>
+            <Typography sx={{ color: colors.textColor }}>
               Регистрация
             </Typography>
           </CustomNavLink>

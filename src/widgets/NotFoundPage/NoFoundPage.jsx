@@ -1,5 +1,5 @@
-import { Stack, Typography } from "@mui/material";
-
+import { Stack } from "@mui/material";
+import { Typography } from "@/shared/ui/Typography/Typography";
 export const NotFoundPage = () => {
   return (
     <Stack sx={{ height: "100vh" }}>
