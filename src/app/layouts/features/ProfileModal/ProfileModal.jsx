@@ -19,7 +19,6 @@ export const ProfileModal = () => {
           color: colors.accentColor,
           textTransform: "none",
           p: 1,
-          mb: 3,
         }}
         onClick={() => setOpen(true)}
       >

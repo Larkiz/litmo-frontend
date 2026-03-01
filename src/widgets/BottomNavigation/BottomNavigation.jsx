@@ -1,4 +1,4 @@
-import { AppBar, IconButton, Stack } from "@mui/material";
+import { IconButton, Stack } from "@mui/material";
 import { Typography } from "@/shared/ui/Typography/Typography";
 import { useLocation } from "react-router";
 import { userRoutes } from "@/app/routes/user.routes";
@@ -9,26 +9,36 @@ export const BottomNavigation = () => {
   const loc = useLocation();
   const colors = useColors();
   return (
-    <AppBar
+    <Stack
       position="absolute"
       sx={{
         top: "auto",
         bottom: 20,
         display: "flex",
         maxWidth: 400,
-        borderRadius: 10,
-        // backgroundColor: "#fff",
-        backgroundColor: colors.background,
         left: "50%",
         transform: "translateX(-50%)",
+        width: "95%",
+        flex: "none",
         zIndex: 9998,
       }}
+      direction={"row"}
+      alignItems={"center"}
+      spacing={2}
     >
       <Stack
         justifyContent={"space-around"}
         direction={"row"}
-        spacing={4}
+        spacing={6}
         alignItems={"center"}
+        sx={{
+          borderRadius: 10,
+          backgroundColor: colors.background,
+          boxShadow: colors.boxShadow,
+          padding: "5px 15px",
+          flex: 1,
+          // width: "100%",
+        }}
       >
         {userRoutes.map((route) => (
           <IconButton
@@ -45,7 +55,7 @@ export const BottomNavigation = () => {
                   color:
                     loc.pathname === route.path
                       ? colors.accentColor
-                      : "#bebebefa!important",
+                      : "rgba(163, 163, 163, 0.98)!important",
                 },
               }}
               alignItems={"center"}
@@ -56,6 +66,6 @@ export const BottomNavigation = () => {
           </IconButton>
         ))}
       </Stack>
-    </AppBar>
+    </Stack>
   );
 };

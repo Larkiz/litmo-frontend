@@ -14,13 +14,14 @@ export const colors: Colors = {
 };
 const darkColors: Colors = {
   neutralColor: "#292929",
-  accentColor: "#9b79c5",
+  accentColor: "#A78BFA",
   textColor: "#ffffe2",
   secondText: "#bebebefa",
   boxShadow:
     "0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);",
-  background: "#212121",
-  foreground: "#181818",
+  background: "#23262B",
+  // background: "#21242B",
+  foreground: "#212121",
   elementBg: "#272a2d",
   iconColor: "#272a2d",
   iconBgColorHover: "#d6d6d6",

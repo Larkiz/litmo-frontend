@@ -9,13 +9,13 @@ import { authFetch } from "@/shared/lib/functions/authFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { setProfile } from "@/redux/slices/profileSlice";
 import { useEffect } from "react";
+import { Stack } from "@mui/material";
+import { RouteButton } from "@/app/layouts/features/RouteButton/RouteButton";
 
 export const UserLayout = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     authFetch("/profile").then((res) => {
-      // console.log(res.data);
-
       dispatch(setProfile(res.data));
     });
   }, []);
@@ -35,7 +35,16 @@ export const UserLayout = () => {
   return (
     !!profile.id && (
       <>
-        <ProfileModal />
+        <Stack
+          sx={{ mb: 3 }}
+          justifyContent={"space-between"}
+          direction={"row"}
+          alignItems={"center"}
+        >
+          <ProfileModal />
+
+          <RouteButton />
+        </Stack>
         {routes()}
         <BottomNavigation />
       </>
